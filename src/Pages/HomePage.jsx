@@ -242,6 +242,53 @@ const HomePage = () => {
         </motion.div>
       </section>
 
+      {/* Featured Projects Section */}
+      <section className="relative max-w-7xl mx-auto px-6 md:px-12 py-20 md:py-32">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-5xl md:text-6xl font-black mb-4">
+            Featured <span className="text-primary">Projects</span>
+          </h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
+          <p className="text-xl text-base-content/60 mt-6">Bringing ideas to life, one project at a time</p>
+        </motion.div>
+
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+        >
+          {featuredProjects.map((project, idx) => (
+            <motion.div key={idx} variants={itemVariants}>
+              <Card {...project} />
+            </motion.div>
+          ))}
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mt-12"
+        >
+          <motion.a
+            href="/project"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="btn btn-outline btn-lg gap-2 border-2"
+          >
+            View All Projects
+            <ArrowRight className="w-5 h-5" />
+          </motion.a>
+        </motion.div>
+      </section>
+
       {/* Hobbies Section - Carousel Style */}
       <section className="relative max-w-7xl mx-auto px-6 md:px-12 py-24">
   <motion.div
@@ -309,53 +356,6 @@ const HomePage = () => {
     ))}
   </div>
 </section>
-
-      {/* Featured Projects Section */}
-      <section className="relative max-w-7xl mx-auto px-6 md:px-12 py-20 md:py-32">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-5xl md:text-6xl font-black mb-4">
-            Featured <span className="text-primary">Projects</span>
-          </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
-          <p className="text-xl text-base-content/60 mt-6">Bringing ideas to life, one project at a time</p>
-        </motion.div>
-
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
-        >
-          {featuredProjects.map((project, idx) => (
-            <motion.div key={idx} variants={itemVariants}>
-              <Card {...project} />
-            </motion.div>
-          ))}
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mt-12"
-        >
-          <motion.a
-            href="/project"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="btn btn-outline btn-lg gap-2 border-2"
-          >
-            View All Projects
-            <ArrowRight className="w-5 h-5" />
-          </motion.a>
-        </motion.div>
-      </section>
 
       {/* Footer */}
       <footer className="relative border-t border-base-300 bg-base-200/50 backdrop-blur-xl">
