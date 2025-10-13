@@ -6,6 +6,21 @@ import Coshira from '../assets/Coshira.png';
 import Chatty from '../assets/Chatty.jpg';
 import MemoryCard from '../assets/MemoryCard.jpg';
 import MusicPlayer from '../assets/MusicPlayer.png';
+import Age from '../assets/Age.png';
+import Auth from '../assets/Auth.png';
+import Calc from '../assets/Calc.png';
+import chatbot from '../assets/chatbot.png';
+import clock from '../assets/Clock.png';
+import imagegen from '../assets/imagegen.png';
+import qr from '../assets/qr.png';
+import solar from '../assets/solar.png';
+import t2v from '../assets/t2v.png';
+import tictac from '../assets/tictac.png';
+import weath from '../assets/weath.png';
+import Infinity from '../assets/Infinity.png';
+import todo from '../assets/todo.png';
+import Note from '../assets/Note.png';
+
 
 const ProjectPage = () => {
   const themes = ['primary', 'secondary', 'accent'];
@@ -60,6 +75,7 @@ const projects = [
   },
   {
     name: "Solar-System",
+    image: solar,
     shortDesc: "An interactive 3D solar system simulation that visualizes planetary motion and orbit mechanics using CSS animations and JavaScript physics.",
     tags: ["Canvas", "HTML5", "JavaScript", "CSS"],
     theme: themes[2],
@@ -81,6 +97,7 @@ const projects = [
   },
   {
     name: "Authenticator",
+    image: Auth,
     shortDesc: "A full-stack authentication system with JWT, secure password handling, email verification, and a responsive React-based UI.",
     tags: ["React", "JWT", "MongoDB", "Express"],
     theme: themes[2],
@@ -88,6 +105,7 @@ const projects = [
   },
   {
     name: "Clock",
+    image: clock,
     shortDesc: "A sleek and minimalist digital clock that auto-adapts its theme based on the current system mode for a seamless user experience.",
     tags: ["JavaScript", "CSS", "HTML5"],
     theme: themes[0],
@@ -95,6 +113,7 @@ const projects = [
   },
   {
     name: "Text-to-Voice-converter",
+    image : t2v,
     shortDesc: "A lightweight text-to-speech web app that converts written text into audio output with multi-language support using browser APIs.",
     tags: ["Web Speech API", "JavaScript"],
     theme: themes[1],
@@ -102,6 +121,7 @@ const projects = [
   },
   {
     name: "QR-Code-generate",
+    image: qr,
     shortDesc: "A simple yet efficient QR code generator that can encode URLs, text, or contact information using qrcode.js.",
     tags: ["qrcode.js", "HTML5", "JavaScript"],
     theme: themes[2],
@@ -109,6 +129,7 @@ const projects = [
   },
   {
     name: "To-do-list",
+    image: todo,
     shortDesc: "An interactive task manager that supports drag-and-drop reordering, local storage persistence, and clean UI animations.",
     tags: ["HTML5", "CSS", "JavaScript", "LocalStorage"],
     theme: themes[0],
@@ -116,6 +137,7 @@ const projects = [
   },
   {
     name: "Note-Pad",
+    image: Note,
     shortDesc: "A simple notepad web app for writing, saving, and editing notes with optional markdown formatting and offline access.",
     tags: ["HTML5", "JavaScript", "CSS"],
     theme: themes[1],
@@ -123,6 +145,7 @@ const projects = [
   },
   {
     name: "Age-Calculator",
+    image: Age,
     shortDesc: "A handy age calculator that determines exact age from a given birth date, accurately handling leap years and date differences.",
     tags: ["JavaScript"],
     theme: themes[2],
@@ -130,6 +153,7 @@ const projects = [
   },
   {
     name: "Calculator",
+    image: Calc,
     shortDesc: "A fast and functional calculator app that supports basic arithmetic and keyboard shortcuts with a polished UI.",
     tags: ["JavaScript", "Math.js"],
     theme: themes[0],
@@ -137,6 +161,7 @@ const projects = [
   },
   {
     name: "Chat-bot",
+    image: chatbot,
     shortDesc: "An intelligent chatbot capable of handling both image and text inputs while delivering contextual and engaging responses.",
     tags: ["JavaScript", "Gemini API", "HTML5"],
     theme: themes[1],
@@ -144,6 +169,7 @@ const projects = [
   },
   {
     name: "Search-for-images",
+    image: imagegen,
     shortDesc: "An image search web app that fetches results from external APIs with infinite scrolling and smooth loading animations.",
     tags: ["Unsplash API", "JavaScript", "HTML5"],
     theme: themes[0],
@@ -151,6 +177,7 @@ const projects = [
   },
   {
     name: "INFINITY-HUB",
+    image: Infinity,
     shortDesc: "A dashboard-style UI for movie and series tracking with categorized watchlists and responsive layouts.",
     tags: ["HTML5", "CSS", "JavaScript"],
     theme: themes[1],
@@ -158,6 +185,7 @@ const projects = [
   },
   {
     name: "Tic-Tac-Toe",
+    image: tictac,
     shortDesc: "A modernized version of the classic Tic-Tac-Toe game featuring an AI opponent, score tracking, and responsive design.",
     tags: ["JavaScript", "HTML5", "CSS"],
     theme: themes[2],
@@ -165,6 +193,7 @@ const projects = [
   },
   {
     name: "Weather-App",
+    image: weath,
     shortDesc: "A dynamic weather app that detects your location and displays real-time forecasts with visually adaptive backgrounds.",
     tags: ["OpenWeather API", "Geolocation", "JavaScript"],
     theme: themes[0],

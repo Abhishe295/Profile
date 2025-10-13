@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Mail, Linkedin, Github, Code2, Send, Phone, ArrowRight,Check } from 'lucide-react';
+import { Mail, Linkedin, Github, Code2, Send, Phone, ArrowRight,Check, MailIcon } from 'lucide-react';
 import Navbar from '../Components/Navbar';
 
 const ContactPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [copied, setCopied] = useState(false);
+  const [mail, setMail] = useState(false);
+
   const phoneNumber = '+91 7982001670';
+  const mailId = 'abhishekgigaiw@gmail.com';
 
   
 
@@ -60,6 +63,12 @@ const ContactPage = () => {
     navigator.clipboard.writeText(phoneNumber);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000); // Reset after 2s
+  };
+
+  const handleMail = () => {
+    navigator.clipboard.writeText(mailId);
+    setMail(true);
+    setTimeout(() => setMail(false), 2000); // Reset after 2s
   };
 
 
@@ -160,26 +169,17 @@ const ContactPage = () => {
         {copied ? <Check className="w-5 h-5" /> : <Phone className="w-5 h-5" />}
         {copied ? 'Copied!' : phoneNumber}
       </button>
+      <button
+        onClick={handleMail}
+        className="btn btn-secondary btn-lg gap-2 group hover:scale-105 transition-transform duration-300"
+      >
+        {copied ? <Check className="w-5 h-5" /> : <MailIcon className="w-5 h-5" />}
+        {copied ? 'Copied!' : mailId}
+      </button>
     </div>
 
           </div>
         </div>
-
-        {/* CTA Section */}
-        {/* <div className="max-w-5xl mx-auto px-4 pb-12 w-full text-center">
-          <div className="bg-gradient-to-r from-accent/20 to-primary/20 border-2 border-accent/40 rounded-2xl p-8 backdrop-blur-sm shadow-lg hover:shadow-2xl transition-all duration-500 hover:border-accent/80">
-            <h2 className="text-2xl sm:text-3xl font-bold text-base-content mb-3">
-              Ready to Start Something Amazing?
-            </h2>
-            <p className="text-base-content/70 mb-6 max-w-xl mx-auto">
-              Pick your preferred platform or give me a call and let's discuss your next big idea!
-            </p>
-            <button className="btn btn-accent gap-2 group" onMouseEnter={() => setHoveredIndex(null)}>
-              Get In Touch
-              <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
-          </div>
-        </div> */}
       </div>
 
       {/* CSS Animations */}
