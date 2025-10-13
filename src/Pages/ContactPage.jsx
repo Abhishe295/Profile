@@ -173,8 +173,8 @@ const ContactPage = () => {
         onClick={handleMail}
         className="btn btn-secondary btn-lg gap-2 group hover:scale-105 transition-transform duration-300"
       >
-        {copied ? <Check className="w-5 h-5" /> : <MailIcon className="w-5 h-5" />}
-        {copied ? 'Copied!' : mailId}
+        {mail ? <Check className="w-5 h-5" /> : <MailIcon className="w-5 h-5" />}
+        {mail ? 'Copied!' : mailId}
       </button>
     </div>
 
