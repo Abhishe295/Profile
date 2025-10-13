@@ -10,7 +10,7 @@ import Age from '../assets/Age.png';
 import Auth from '../assets/Auth.png';
 import Calc from '../assets/Calc.png';
 import chatbot from '../assets/chatbot.png';
-import clock from '../assets/Clock.png';
+import clock from '../assets/clock.png';
 import imagegen from '../assets/imagegen.png';
 import qr from '../assets/qr.png';
 import solar from '../assets/solar.png';
