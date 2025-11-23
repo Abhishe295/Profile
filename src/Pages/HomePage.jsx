@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Dumbbell,Activity, Book, ChefHat, Sparkles, Zap, Rocket, ArrowRight, Star } from 'lucide-react';
+import { Dumbbell, Activity, Book, ChefHat, Sparkles, Zap, Rocket, ArrowRight, Star, FileDown, Eye } from 'lucide-react';
+import toast, { Toaster } from 'react-hot-toast';
 import Navbar from '../Components/Navbar';
 import Card from '../Components/Card';
 import MindWell from '../assets/MindWell.png';
@@ -9,6 +10,40 @@ import MemoryCard from '../assets/MemoryCard.jpg';
 import Abhishek from '../assets/Abhishek.jpg';
 
 const HomePage = () => {
+  const [showResumeMenu, setShowResumeMenu] = useState(false);
+  const resumePath = '/resume.pdf'; // Place your resume.pdf in the public folder
+
+  const handleViewResume = () => {
+    window.open(resumePath, '_blank');
+    setShowResumeMenu(false);
+    toast.success('Opening resume in new tab!', {
+      icon: '👀',
+      style: {
+        borderRadius: '10px',
+        background: '#333',
+        color: '#fff',
+      },
+    });
+  };
+
+  const handleDownloadResume = () => {
+    const link = document.createElement('a');
+    link.href = resumePath;
+    link.download = 'Abhishek_Kumar_Pundir_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    setShowResumeMenu(false);
+    toast.success('Resume downloaded successfully!', {
+      icon: '📥',
+      style: {
+        borderRadius: '10px',
+        background: '#333',
+        color: '#fff',
+      },
+    });
+  };
+
   const themes = ['primary','secondary','accent'];
   const featuredProjects = [
     {
@@ -52,6 +87,7 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-base-100 via-base-200 to-base-300 text-base-content overflow-hidden">
+      <Toaster position="top-center" reverseOrder={false} />
       {/* Animated background elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
@@ -109,14 +145,43 @@ const HomePage = () => {
           Explore Projects
           <ArrowRight className="w-5 h-5" />
         </motion.a>
-        <motion.a
-          href="/contact"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="btn btn-outline btn-lg gap-2"
-        >
-          Let's Connect
-        </motion.a>
+        
+        {/* Resume Button with Dropdown */}
+        <div className="relative">
+          <motion.button
+            onClick={() => setShowResumeMenu(!showResumeMenu)}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="btn btn-secondary btn-lg gap-2 shadow-lg shadow-secondary/50"
+          >
+            <FileDown className="w-5 h-5" />
+            Resume
+          </motion.button>
+          
+          {showResumeMenu && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="absolute top-full mt-2 left-0 right-0 bg-base-100 rounded-lg shadow-xl border border-base-300 overflow-hidden z-50"
+            >
+              <button
+                onClick={handleViewResume}
+                className="w-full px-4 py-3 flex items-center gap-3 hover:bg-base-200 transition-colors text-left"
+              >
+                <Eye className="w-5 h-5 text-primary" />
+                <span className="font-medium">View Resume</span>
+              </button>
+              <button
+                onClick={handleDownloadResume}
+                className="w-full px-4 py-3 flex items-center gap-3 hover:bg-base-200 transition-colors text-left border-t border-base-300"
+              >
+                <FileDown className="w-5 h-5 text-secondary" />
+                <span className="font-medium">Download Resume</span>
+              </button>
+            </motion.div>
+          )}
+        </div>
       </div>
     </motion.div>
   </div>
@@ -151,7 +216,7 @@ const HomePage = () => {
                 {/* Circular image container */}
                 <div className="relative w-64 h-64 rounded-full bg-gradient-to-tr from-primary/20 to-secondary/20 border-4 border-primary/50 backdrop-blur-sm flex items-center justify-center overflow-hidden">
                   <img
-                    src={Abhishek} // Replace with your actual image path
+                    src={Abhishek}
                     alt="Abhishek Kumar Pundir"
                     className="w-full h-full object-cover"
                   />
@@ -180,7 +245,7 @@ const HomePage = () => {
   I enjoy experimenting with JavaScript, Python, and AI/ML tools, and I like making things that are interactive and fun. From creating real-time chat apps to developing memory games and music players, I focus on learning by doing and pushing my skills further every day.
 </p>
 <p className="text-lg text-base-content/80 leading-relaxed">
-  Outside coding, I’m into running, going to the gym, cooking, and reading books. I try to balance learning and fitness because both help me stay focused and motivated for my projects.
+  Outside coding, I'm into running, going to the gym, cooking, and reading books. I try to balance learning and fitness because both help me stay focused and motivated for my projects.
 </p>
 
             </div>
