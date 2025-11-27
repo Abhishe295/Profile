@@ -9,11 +9,6 @@ import Chatty from '../assets/Chatty.jpg';
 import MemoryCard from '../assets/MemoryCard.jpg';
 import Abhishek from '../assets/Abhishek.jpg';
 
-// Loading Screen Component
-// Loading Screen Component
-// Loading Screen Component
-
-
 const letters = "!<>-_\\/[]{}—=+*^?#________";
 
 function scrambleText(original, setDisplay) {
@@ -108,13 +103,6 @@ const LoadingScreen = ({ onComplete }) => {
   );
 };
 
-
-
-
-
-// Liquid Mouse Follower Component
-
-
 const LiquidCursor = () => {
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
 
@@ -136,7 +124,32 @@ const LiquidCursor = () => {
 
     window.addEventListener("mousemove", move);
     return () => window.removeEventListener("mousemove", move);
-  }, []);
+  }, [blob1X, blob1Y, blob2X, blob2Y]);
+
+  // Calculate distortion values
+  const dx = mouse.x - (typeof window !== 'undefined' ? window.innerWidth / 2 : 0);
+  const dy = mouse.y - (typeof window !== 'undefined' ? window.innerHeight / 2 : 0);
+  const dist = Math.hypot(dx, dy);
+
+  // --- Distortion calculations ---
+  const shrink = 1 - Math.min(dist, 300) / 2000;
+  const bend = 1 + Math.min(dist, 400) / 20000;
+  const ripple = 1 + (1 - Math.min(dist, 150) / 150) * 0.05;
+  const swirl = (dx / 2000);
+  const pullX = dx * 0.03;
+  const pullY = dy * 0.03;
+
+  const transform = `
+    perspective(900px)
+    rotateX(55deg)
+    translateZ(-120px)
+    translateX(${pullX}px)
+    translateY(${pullY}px)
+    scale(${shrink})
+    scale(${bend})
+    rotate(${swirl}deg)
+    scale(${ripple})
+  `;
 
   return (
     <>
@@ -146,25 +159,14 @@ const LiquidCursor = () => {
           className="absolute inset-0"
           style={{
             backgroundImage: `
-              linear-gradient(to right, rgba(59,130,246,0.35) 1px, transparent 1px),
-              linear-gradient(to bottom, rgba(59,130,246,0.35) 1px, transparent 1px)
+              linear-gradient(to right, rgba(59,130,246,0.4) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(59,130,246,0.4) 1px, transparent 1px)
             `,
             backgroundSize: "40px 40px",
-
-            /* 🔥 Blackhole warp effect */
-            transform: `
-              perspective(900px)
-              rotateX(55deg)
-              translateZ(-120px)
-              translateX(${(mouse.x - window.innerWidth / 2) * 0.03}px)
-              translateY(${(mouse.y - window.innerHeight / 2) * 0.03}px)
-              scale(0.85)
-            `,
+            transform,
             transformOrigin: "center center",
-
-            /* Spotlight mask */
-            maskImage: `radial-gradient(circle 500px at ${mouse.x}px ${mouse.y}px, rgba(0,0,0,0.92), transparent 70%)`,
-            WebkitMaskImage: `radial-gradient(circle 500px at ${mouse.x}px ${mouse.y}px, rgba(0,0,0,0.92), transparent 70%)`,
+            maskImage: `radial-gradient(circle 500px at ${mouse.x}px ${mouse.y}px, rgba(0,0,0,0.95), transparent 70%)`,
+            WebkitMaskImage: `radial-gradient(circle 500px at ${mouse.x}px ${mouse.y}px, rgba(0,0,0,0.95), transparent 70%)`,
           }}
         />
       </div>
@@ -184,7 +186,7 @@ const LiquidCursor = () => {
       >
         {/* Main Blob */}
         <motion.div
-          className="w-12 h-12 rounded-full bg-gradient-to-r from-primary to-secondary fixed shadow-2xl"
+          className="w-12 h-12 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 fixed shadow-2xl"
           style={{
             x: blob1X,
             y: blob1Y,
@@ -195,7 +197,7 @@ const LiquidCursor = () => {
 
         {/* Smaller trailing Blob */}
         <motion.div
-          className="w-8 h-8 rounded-full bg-gradient-to-r from-secondary to-accent fixed opacity-80 shadow-xl"
+          className="w-8 h-8 rounded-full bg-gradient-to-r from-pink-500 to-blue-500 fixed opacity-80 shadow-xl"
           style={{
             x: blob2X,
             y: blob2Y,

@@ -1,8 +1,7 @@
 import React from 'react'
 import { useThemeStore } from '../lib/useTheme.js'
 import { THEMES } from '../constants/index.js'
-import { Home, Palette, Check, Moon, Sun, Monitor, Settings, Shield } from 'lucide-react'
-import { Link } from 'react-router'
+import { Palette, Check } from 'lucide-react'
 import Navbar from '../Components/Navbar.jsx'
 
 const SettingPage = () => {
