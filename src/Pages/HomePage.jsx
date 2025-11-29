@@ -106,7 +106,6 @@ const LoadingScreen = ({ onComplete }) => {
 const LiquidCursor = () => {
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
 
-  // Smooth physics-based trailing blobs
   const blob1X = useSpring(0, { stiffness: 90, damping: 20 });
   const blob1Y = useSpring(0, { stiffness: 90, damping: 20 });
 
@@ -126,16 +125,14 @@ const LiquidCursor = () => {
     return () => window.removeEventListener("mousemove", move);
   }, [blob1X, blob1Y, blob2X, blob2Y]);
 
-  // Calculate distortion values
-  const dx = mouse.x - (typeof window !== 'undefined' ? window.innerWidth / 2 : 0);
-  const dy = mouse.y - (typeof window !== 'undefined' ? window.innerHeight / 2 : 0);
+  const dx = mouse.x - window.innerWidth / 2;
+  const dy = mouse.y - window.innerHeight / 2;
   const dist = Math.hypot(dx, dy);
 
-  // --- Distortion calculations ---
   const shrink = 1 - Math.min(dist, 300) / 2000;
   const bend = 1 + Math.min(dist, 400) / 20000;
   const ripple = 1 + (1 - Math.min(dist, 150) / 150) * 0.05;
-  const swirl = (dx / 2000);
+  const swirl = dx / 2000;
   const pullX = dx * 0.03;
   const pullY = dy * 0.03;
 
@@ -153,14 +150,14 @@ const LiquidCursor = () => {
 
   return (
     <>
-      {/* ================= GRID OVERLAY (BLACKHOLE EFFECT) ================= */}
+      {/* ================= GRID OVERLAY ================= */}
       <div className="pointer-events-none fixed inset-0 z-[9997]">
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 opacity-40"
           style={{
             backgroundImage: `
-              linear-gradient(to right, rgba(59,130,246,0.4) 1px, transparent 1px),
-              linear-gradient(to bottom, rgba(59,130,246,0.4) 1px, transparent 1px)
+              linear-gradient(to right, oklch(var(--p)) 1px, transparent 1px),
+              linear-gradient(to bottom, oklch(var(--p)) 1px, transparent 1px)
             `,
             backgroundSize: "40px 40px",
             transform,
@@ -175,18 +172,29 @@ const LiquidCursor = () => {
       <motion.div
         className="pointer-events-none fixed inset-0 z-[9998]"
         style={{
-          background: `radial-gradient(600px circle at ${mouse.x}px ${mouse.y}px, rgba(138, 43, 226, 0.18), transparent 40%)`,
+          background: `
+            radial-gradient(
+              600px circle at ${mouse.x}px ${mouse.y}px, 
+              color-mix(in oklch, oklch(var(--p)) 30%, transparent),
+              transparent 40%
+            )
+          `,
         }}
       />
 
-      {/* ================= BLOBS (GOOEY CURSOR) ================= */}
+      {/* ================= BLOBS ================= */}
       <div
         className="pointer-events-none fixed inset-0 z-[9999]"
         style={{ filter: "url(#gooey)" }}
       >
-        {/* Main Blob */}
+        {/* Main Blob = primary → secondary */}
         <motion.div
-          className="w-12 h-12 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 fixed shadow-2xl"
+          className="
+            w-12 h-12 rounded-full fixed shadow-2xl 
+            bg-gradient-to-r 
+            from-[oklch(var(--p))] 
+            to-[oklch(var(--s))]
+          "
           style={{
             x: blob1X,
             y: blob1Y,
@@ -195,9 +203,14 @@ const LiquidCursor = () => {
           }}
         />
 
-        {/* Smaller trailing Blob */}
+        {/* Trail Blob = secondary → accent */}
         <motion.div
-          className="w-8 h-8 rounded-full bg-gradient-to-r from-pink-500 to-blue-500 fixed opacity-80 shadow-xl"
+          className="
+            w-8 h-8 rounded-full fixed opacity-80 shadow-xl
+            bg-gradient-to-r 
+            from-[oklch(var(--s))] 
+            to-[oklch(var(--a))]
+          "
           style={{
             x: blob2X,
             y: blob2Y,
@@ -207,7 +220,7 @@ const LiquidCursor = () => {
         />
       </div>
 
-      {/* ================= GOOEY SVG FILTER ================= */}
+      {/* ================= GOOEY FILTER ================= */}
       <svg className="hidden">
         <defs>
           <filter id="gooey">
@@ -230,6 +243,7 @@ const LiquidCursor = () => {
     </>
   );
 };
+
 
 
 
