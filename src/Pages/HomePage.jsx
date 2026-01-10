@@ -629,7 +629,7 @@ const HomePage = () => {
                 },
                 {
                   icon: <Dumbbell className="w-12 h-12" />,
-                  title: "Gyming",
+                  title: "Gymming",
                   desc: "Building strength, resilience, and the V-shaped vision—one rep at a time.",
                   color: "primary",
                 },
