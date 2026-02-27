@@ -5,8 +5,8 @@ import toast, { Toaster } from 'react-hot-toast';
 import Navbar from '../Components/Navbar';
 import Card from '../Components/Card';
 import MindWell from '../assets/MindWell.png';
-import Chatty from '../assets/Chatty.jpg';
-import MemoryCard from '../assets/MemoryCard.jpg';
+import HelpX from '../assets/HelpX.png';
+import Musify from '../assets/Musify.png';
 import Abhishek from '../assets/Abhishek.jpg';
 
 const letters = "!<>-_\\/[]{}—=+*^?#________";
@@ -292,23 +292,23 @@ const HomePage = () => {
         shortDesc: "A thoughtful mental wellness platform that helps users track emotions, jot down daily reflections, and chat with an AI companion for mindful growth.",
         tags: ["MERN", "Python", "AI", "OpenCV", "Librosa", "Socket.io"],
         theme: themes[0],
-        link: "https://github.com/Abhishe295/ThinkBoard",
+        link: "https://mindwell-three.vercel.app/",
       },
     {
-        name: "Chatty",
-        image: Chatty,
-        shortDesc: "A real-time chat application enabling fast and reliable communication with socket-powered messaging, typing indicators, and emoji support.",
-        tags: ["Node.js", "Express", "Socket.io", "React"],
+        name: "HelpX",
+        image: HelpX,
+        shortDesc: "An active user dashboard that helps user to connect them with the nearby volunteers in case of any emergency and also provides real time chat support.",
+        tags: ["React", "Express", "Socket.io", "MongoDB"],
         theme: themes[0],
-        link: "https://github.com/Abhishe295/REalTime---Chatapp-",
+        link: "https://help-x-wheat.vercel.app/",
       },
     {
-        name: "Memory Card Game",
-        image: MemoryCard,
-        shortDesc: "A dynamic emoji-based card matching game with multiple levels, interactive feedback, and score tracking for casual fun and memory training.",
-        tags: ["JavaScript", "Game Logic", "CSS"],
+        name: "Musify",
+        image: Musify,
+        shortDesc: "A music streaming platform that recommends songs based on user preferences and mood using machine learning algorithms and Gemini API.",
+        tags: ["React", "Express", "DaisyUI","API","ML"],
         theme: themes[2],
-        link: "https://github.com/Abhishe295/Memory---card-game-with-levels",
+        link: "https://musfiy.vercel.app/",
       },
   ];
 
